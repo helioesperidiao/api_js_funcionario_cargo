@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors")
+
 const ErrorResponse = require("./api/utils/ErrorResponse"); // Classe para representar erros customizados da API
 const Logger = require("./api/utils/Logger"); // Utilitário para registrar logs (console/arquivo/etc.)
 
@@ -85,6 +87,18 @@ module.exports = class Server {
         this.#router = express.Router();
         this.#app.use(express.json()); // Habilita leitura de JSON no corpo da requisição
         this.#app.use(express.static("static")); // Habilita pasta "static" para arquivos públicos (ex: HTML, JS, CSS)
+
+        //configuração de cors significa que qualquer site ou domínio pode fazer requisições para sua API sem sofre bloquio de cors
+        this.#app.use(cors({ origin: "*" }));
+        /**
+         * cors pode trabalhar com configurações complexas, veja exemplo abaixo.
+         * this.#app.use(cors({
+               origin: ["http://localhost:3000", "https://meusite.com"],
+                methods: ["GET", "POST"],
+                allowedHeaders: ["Content-Type", "Authorization"]
+            }));
+         */
+
         this.#jwtMiddleware = new JwtMiddleware(); // Inicializa middleware JWT
 
         // 🔹 Cria o pool global de conexões MySQL
