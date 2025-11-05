@@ -1,7 +1,7 @@
 const express = require("express");
 const CargoMiddleware = require("../middleware/CargoMiddleware");
 const FuncionarioMiddleware = require("../middleware/FuncionarioMiddleware");
-const FuncionarioControle = require("../control/FuncionarioControl");
+const FuncionarioControle = require("../controllers/FuncionarioControl");
 const JwtMiddleware = require("../middleware/JwtMiddleware");
 
 /**

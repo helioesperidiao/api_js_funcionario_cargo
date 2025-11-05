@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-const Funcionario = require("../model/Funcionario");
-const Cargo = require("../model/Cargo");
+const Funcionario = require("../models/Funcionario");
+const Cargo = require("../models/Cargo");
 const MysqlDatabase = require("../database/MysqlDatabase");
 
 /**

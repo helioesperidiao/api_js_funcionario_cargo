@@ -1,4 +1,4 @@
-const FuncionarioService = require("../service/FuncionarioService");
+const FuncionarioService = require("../services/FuncionarioService");
 
 /**
  * Classe responsável por controlar os endpoints da API REST para a entidade Funcionario.

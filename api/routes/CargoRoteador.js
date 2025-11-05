@@ -1,7 +1,7 @@
 const express = require("express");
 const JwtMiddleware = require("../middleware/JwtMiddleware");
 const CargoMiddleware = require("../middleware/CargoMiddleware");
-const CargoControle = require("../control/CargoControl");
+const CargoControle = require("../controllers/CargoControl");
 
 /**
  * Classe responsável por configurar as rotas da entidade Cargo.

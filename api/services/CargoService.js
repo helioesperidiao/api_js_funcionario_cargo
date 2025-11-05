@@ -1,5 +1,5 @@
 const CargoDAO = require("../dao/CargoDAO");
-const Cargo = require("../model/Cargo");
+const Cargo = require("../models/Cargo");
 const ErrorResponse = require("../utils/ErrorResponse");
 
 /**

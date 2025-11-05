@@ -1,4 +1,4 @@
-const Cargo = require("../model/Cargo");
+const Cargo = require("../models/Cargo");
 const MysqlDatabase = require("../database/MysqlDatabase");
 
 /**

@@ -1,7 +1,7 @@
 const CargoDAO = require("../dao/CargoDAO");
 const FuncionarioDAO = require("../dao/FuncionarioDAO");
-const Cargo = require("../model/Cargo");
-const Funcionario = require("../model/Funcionario");
+const Cargo = require("../models/Cargo");
+const Funcionario = require("../models/Funcionario");
 const MeuTokenJWT = require("../http/MeuTokenJWT");
 const ErrorResponse = require("../utils/ErrorResponse");
 

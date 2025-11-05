@@ -8,20 +8,20 @@ const Logger = require("./api/utils/Logger"); // Utilitário para registrar logs
 const JwtMiddleware = require("./api/middleware/JwtMiddleware"); // Middleware de autenticação via JWT
 
 // Roteadores
-const CargoRoteador = require("./api/router/CargoRoteador");
-const FuncionarioRoteador = require("./api/router/FuncionarioRoteador");
+const CargoRoteador = require("./api/routes/CargoRoteador");
+const FuncionarioRoteador = require("./api/routes/FuncionarioRoteador");
 
 // Middlewares específicos das entidades
 const CargoMiddleware = require("./api/middleware/CargoMiddleware");
 const FuncionarioMiddleware = require("./api/middleware/FuncionarioMiddleware");
 
 // Controllers (controladores das regras de entrada/saída HTTP)
-const CargoControle = require("./api/control/CargoControl");
-const FuncionarioControl = require("./api/control/FuncionarioControl");
+const CargoControle = require("./api/controllers/CargoControl");
+const FuncionarioControl = require("./api/controllers/FuncionarioControl");
 
 // Services (camada de regras de negócio)
-const CargoService = require("./api/service/CargoService");
-const FuncionarioService = require("./api/service/FuncionarioService");
+const CargoService = require("./api/services/CargoService");
+const FuncionarioService = require("./api/services/FuncionarioService");
 
 // DAOs (camada de acesso a dados, comunicação com o banco)
 const CargoDAO = require("./api/dao/CargoDAO");

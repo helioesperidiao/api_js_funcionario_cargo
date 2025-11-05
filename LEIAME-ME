@@ -98,3 +98,13 @@ Guarda scripts de criação de tabelas, arquivos de configuração de conexão e
 
 http/
 Responsável por manipulação de dados http e validação jwt
+
+
+| Tipo       | Quando usar                            | Exemplo                                                    |
+| ---------- | -------------------------------------- | ---------------------------------------------------------- |
+| `feat`     | adicionar nova funcionalidade          | `feat(router): adiciona rota de usuários`                  |
+| `fix`      | corrigir bug                           | `fix(service): corrige erro de validação`                  |
+| `refactor` | alterar código sem mudar comportamento | `refactor(controller): renomeia pastas para padrão plural` |
+| `chore`    | manutenção, tarefas, configs, renomes  | `chore: renomeia pastas para nomes padronizados`           |
+| `style`    | formatação, espaçamento, lint          | `style: ajusta indentação do código`                       |
+| `docs`     | documentação                           | `docs: atualiza README`                                    |

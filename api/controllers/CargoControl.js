@@ -1,5 +1,5 @@
 // Importa a classe Cargo, que representa a entidade Cargo do sistema
-const CargoService = require("../service/CargoService");
+const CargoService = require("../services/CargoService");
 
 /**
  * Classe responsável por controlar os endpoints da API REST para a entidade Cargo.
