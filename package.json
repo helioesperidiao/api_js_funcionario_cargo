@@ -1,11 +1,12 @@
 {
-  "name": "restpapijsvideoaula",
+  "name": "api_js_funcionario_cargo",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hélio Lourenço Esperidião Ferreira",

@@ -2,10 +2,6 @@
 
 Sistema de gerenciamento de funcionários e cargos com autenticação JWT.
 
-# API REST - Sistema de Gestão RH
-
-Sistema de gerenciamento de funcionários e cargos com autenticação JWT.
-
 ## 👨‍💻 Autor
 
 **Helio Esperidião**
@@ -194,8 +190,8 @@ Remover cargo
 Acesse http://localhost:8080/Login.html
 
 Credenciais padrão:
-- Email: admin@email.com
-- Senha: Admin@123
+- Email: helioesperidiao@gmail.com
+- Senha: @Helio123456
 
 ## 📄 Licença
 
