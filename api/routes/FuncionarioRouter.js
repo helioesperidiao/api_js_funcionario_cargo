@@ -1,7 +1,7 @@
 const express = require("express");
 const CargoMiddleware = require("../middleware/CargoMiddleware");
 const FuncionarioMiddleware = require("../middleware/FuncionarioMiddleware");
-const FuncionarioControle = require("../controllers/FuncionarioControl");
+const FuncionarioController = require("../controllers/FuncionarioController");
 const JwtMiddleware = require("../middleware/JwtMiddleware");
 
 /**
@@ -18,7 +18,7 @@ const JwtMiddleware = require("../middleware/JwtMiddleware");
 module.exports = class FuncionarioRoteador {
     // Atributos privados
     #router;
-    #funcionarioControle;
+    #FuncionarioController;
     #funcionarioMiddleware;
     #jwtMiddleware;
 
@@ -28,16 +28,16 @@ module.exports = class FuncionarioRoteador {
      * Injeção de dependência:
      * @param {JwtMiddleware} jwtMiddleware - Middleware JWT externo injetado
      * @param {FuncionarioMiddleware} funcionarioMiddleware - Middleware de validação de Funcionario injetado
-     * @param {FuncionarioControle} funcionarioControle - Controlador de Funcionario injetado
+     * @param {FuncionarioController} FuncionarioController - Controlador de Funcionario injetado
      */
-    constructor(jwtMiddleware, funcionarioMiddleware, funcionarioControle) {
+    constructor(jwtMiddleware, funcionarioMiddleware, FuncionarioController) {
         console.log("⬆️  FuncionarioRoteador.constructor()");
         this.#router = express.Router();
 
         // Armazenando as instâncias injetadas
         this.#jwtMiddleware = jwtMiddleware;
         this.#funcionarioMiddleware = funcionarioMiddleware;
-        this.#funcionarioControle = funcionarioControle;
+        this.#FuncionarioController = FuncionarioController;
     }
 
     /**
@@ -62,14 +62,14 @@ module.exports = class FuncionarioRoteador {
         // ROTA: POST[/funcionarios/login]
         this.#router.post("/login",
             this.#funcionarioMiddleware.validateLoginBody,
-            this.#funcionarioControle.login
+            this.#FuncionarioController.login
         );
 
         // ROTA: POST[/funcionarios]
         this.#router.post("/",
             this.#jwtMiddleware.validateToken,
             this.#funcionarioMiddleware.validateCreateBody,
-            this.#funcionarioControle.store
+            this.#FuncionarioController.store
         );
 
         // ROTA: PUT[/funcionarios/:idFuncionario]
@@ -77,27 +77,27 @@ module.exports = class FuncionarioRoteador {
             this.#jwtMiddleware.validateToken,
             this.#funcionarioMiddleware.validateIdParam,
             this.#funcionarioMiddleware.validateCreateBody,
-            this.#funcionarioControle.update
+            this.#FuncionarioController.update
         );
 
         // ROTA: DELETE[/funcionarios/:idFuncionario]
         this.#router.delete("/:idFuncionario",
             this.#jwtMiddleware.validateToken,
             this.#funcionarioMiddleware.validateIdParam,
-            this.#funcionarioControle.destroy
+            this.#FuncionarioController.destroy
         );
 
         // ROTA: GET[/funcionarios]
         this.#router.get("/",
             this.#jwtMiddleware.validateToken,
-            this.#funcionarioControle.index
+            this.#FuncionarioController.index
         );
 
         // ROTA: GET[/funcionarios/:idFuncionario]
         this.#router.get("/:idFuncionario",
             this.#jwtMiddleware.validateToken,
             this.#funcionarioMiddleware.validateIdParam,
-            this.#funcionarioControle.show
+            this.#FuncionarioController.show
         );
 
         return this.#router;

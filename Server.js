@@ -8,16 +8,16 @@ const Logger = require("./api/utils/Logger"); // Utilitário para registrar logs
 const JwtMiddleware = require("./api/middleware/JwtMiddleware"); // Middleware de autenticação via JWT
 
 // Roteadores
-const CargoRoteador = require("./api/routes/CargoRoteador");
-const FuncionarioRoteador = require("./api/routes/FuncionarioRoteador");
+const CargoRouter = require("./api/routes/CargoRouter");
+const FuncionarioRouter = require("./api/routes/FuncionarioRouter");
 
 // Middlewares específicos das entidades
 const CargoMiddleware = require("./api/middleware/CargoMiddleware");
 const FuncionarioMiddleware = require("./api/middleware/FuncionarioMiddleware");
 
 // Controllers (controladores das regras de entrada/saída HTTP)
-const CargoControle = require("./api/controllers/CargoControl");
-const FuncionarioControl = require("./api/controllers/FuncionarioControl");
+const CargoController = require("./api/controllers/CargoController");
+const FuncionarioController = require("./api/controllers/FuncionarioController");
 
 // Services (camada de regras de negócio)
 const CargoService = require("./api/services/CargoService");
@@ -50,16 +50,16 @@ module.exports = class Server {
 
     #jwtMiddleware; // Middleware de autenticação
 
-    #cargoRoteador;
+    #cargoRouter;
     #cargoMiddleware;
-    #cargoControl;
+    #cargoController;
     #cargoService;
     #cargoDAO;
 
 
-    #funcionarioRoteador;
+    #funcionarioRouter;
     #funcionarioMiddleware;
-    #funcionarioControl;
+    #funcionarioController;
     #funcionarioService;
     #funcionarioDAO;
 
@@ -152,7 +152,7 @@ module.exports = class Server {
         // Recebe o Service via injeção de dependência.
         // O Controller apenas recebe requisições HTTP e delega a execução
         // da lógica de negócio ao Service.
-        this.#cargoControl = new CargoControle(this.#cargoService);
+        this.#cargoController = new CargoController(this.#cargoService);
 
         // 🔹 Roteador de Cargo
         // Recebe todas as dependências necessárias:
@@ -160,17 +160,17 @@ module.exports = class Server {
         // - jwtMiddleware → autenticação
         // - cargoMiddleware → validação de entrada
         // - cargoControl → manipulação da lógica de negócio
-        this.#cargoRoteador = new CargoRoteador(
+        this.#cargoRouter = new CargoRouter(
             this.#router,
             this.#jwtMiddleware,
             this.#cargoMiddleware,
-            this.#cargoControl
+            this.#cargoController
         );
 
         // 🔹 Registro final no Express
         // Todas as rotas da entidade Cargo ficam disponíveis em:
         // http://localhost:PORT/api/v1/cargos
-        this.#app.use("/api/v1/cargos", this.#cargoRoteador.createRoutes());
+        this.#app.use("/api/v1/cargos", this.#cargoRouter.createRoutes());
     }
 
     /**
@@ -214,23 +214,23 @@ module.exports = class Server {
         // Recebe o Service via injeção.
         // Assim, o Controller não implementa regras de negócio,
         // apenas repassa as requisições HTTP para o Service.
-        this.#funcionarioControl = new FuncionarioControl(this.#funcionarioService);
+        this.#funcionarioController = new FuncionarioController(this.#funcionarioService);
 
         // 🔹 Roteador de Funcionário
         // Recebe todas as dependências necessárias:
         // - jwtMiddleware → garante autenticação.
         // - funcionarioMiddleware → garante validação de entrada.
         // - funcionarioControl → controla a lógica de entrada/saída HTTP.
-        this.#funcionarioRoteador = new FuncionarioRoteador(
+        this.#funcionarioRouter = new FuncionarioRouter(
             this.#jwtMiddleware,
             this.#funcionarioMiddleware,
-            this.#funcionarioControl
+            this.#funcionarioController
         );
 
         // 🔹 Registro final no Express
         // Todas as rotas de funcionário ficam disponíveis em:
         // http://localhost:PORT/api/v1/funcionarios
-        this.#app.use("/api/v1/funcionarios", this.#funcionarioRoteador.createRoutes());
+        this.#app.use("/api/v1/funcionarios", this.#funcionarioRouter.createRoutes());
     }
     /**
      * Middleware executado antes de todas as rotas.

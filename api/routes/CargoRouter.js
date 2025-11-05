@@ -1,7 +1,7 @@
 const express = require("express");
 const JwtMiddleware = require("../middleware/JwtMiddleware");
 const CargoMiddleware = require("../middleware/CargoMiddleware");
-const CargoControle = require("../controllers/CargoControl");
+const CargoController = require("../controllers/CargoController");
 
 /**
  * Classe responsável por configurar as rotas da entidade Cargo.
@@ -27,15 +27,15 @@ module.exports = class CargoRoteador {
      * Injeção de dependência:
      * @param {JwtMiddleware} jwtMiddlewareDependency - Middleware JWT externo injetado
      * @param {CargoMiddleware} cargoMiddlewareDependency - Middleware de validação de Cargo injetado
-     * @param {CargoControle} cargoControlDependency - Controlador de Cargo injetado
+     * @param {CargoController} cargoControllerDependency - Controlador de Cargo injetado
      */
-    constructor(routerDependency, jwtMiddlewareDependency, cargoMiddlewareDependency, cargoControlDependency) {
+    constructor(routerDependency, jwtMiddlewareDependency, cargoMiddlewareDependency, cargoControllerDependency) {
         console.log("⬆️  CargoRoteador.constructor()");
         // Armazenando as instâncias injetadas
         this.#router = routerDependency;
         this.#jwtMiddleware = jwtMiddlewareDependency;
         this.#cargoMiddleware = cargoMiddlewareDependency;
-        this.#cargoControl = cargoControlDependency;
+        this.#cargoControl = cargoControllerDependency;
     }
 
     /**

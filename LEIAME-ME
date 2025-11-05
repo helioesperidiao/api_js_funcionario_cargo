@@ -6,9 +6,9 @@ PARA RODAR DIGITE NO TERMINAL
 PORTA: 8080
 
 RODAR:
-node app.js
+node index.js
 ou 
-npx nodemon app.js
+npx nodemon index.js
  
 
 
@@ -81,7 +81,7 @@ Centraliza as regras de negócio e o processamento dos dados. Os services recebe
 dao/
 (Data Access Object) Responsável por toda a comunicação com o banco de dados. Aqui ficam as funções de CRUD (Create, Read, Update, Delete) e consultas específicas.
 
-middlewares/
+middleware/
 Contém funções intermediárias que são executadas entre a requisição e a resposta, como autenticação, validação de dados, tratamento de erros, etc.
 
 models/
